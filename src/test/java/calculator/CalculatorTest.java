@@ -1,15 +1,26 @@
 package calculator;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
 class CalculatorTest {
+        private Calculator calculator;
+
+        @BeforeEach void setUp() {
+            calculator = new Calculator();
+        }
+
+        @AfterEach void tearDown() {
+            calculator = null;
+        }
 
         @Test
         void devrait_obtenir_le_resultat_de_laddition() {
             //GIVEN
-            Calculator calculator = new Calculator();
             int opG = 2;
             int opD = 3;
 
@@ -24,7 +35,6 @@ class CalculatorTest {
         @Test
         void devrait_obtenir_le_resultat_de_la_division() {
             //GIVEN
-            Calculator calculator = new Calculator();
             int opG = 6;
             int opD = 3;
 
