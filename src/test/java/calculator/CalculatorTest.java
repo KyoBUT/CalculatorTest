@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Set;
 
@@ -31,7 +32,7 @@ class CalculatorTest {
             int resultat = Calculator.add(opG, opD);
 
             //THEN
-            assertEquals(5, resultat);
+            assertThat(resultat).isEqualTo(5);
         }
 
         @ParameterizedTest(name = "{0} + {1} = {2}")
@@ -48,12 +49,11 @@ class CalculatorTest {
 
             // WHEN
             int somme = Calculator.add(first, second);
-
             // THEN  -- SI on ne s'occupe pas de l'exception levée
 
             //assertEquals(expectedResult, calculatorEnTest.add(first, second),
             //		() -> first + " + " + second + " should equal " + expectedResult);	// JUnit
-            assertEquals(expectedResult, somme);	                            // assertJ
+            assertThat(somme).isEqualTo(expectedResult);
         }
 
         @Test
@@ -65,7 +65,7 @@ class CalculatorTest {
             int quotient = Calculator.divide(1,2);
 
             //THEN
-            assertEquals(0, quotient);
+            assertThat(quotient).isEqualTo(0);
         }
 
         @Test
@@ -77,7 +77,7 @@ class CalculatorTest {
             int quotient = Calculator.divide(7,2);
 
             //THEN
-            assertEquals(3, quotient);
+            assertThat(quotient).isEqualTo(3);
         }
 
         @Test
@@ -89,7 +89,7 @@ class CalculatorTest {
             Set<Integer> ensembleChiffres = Calculator.ensembleChiffres(entierPositif);
 
             //THEN
-            assertEquals(5, ensembleChiffres.size());
+            assertThat(ensembleChiffres).containsExactlyInAnyOrder(9, 6, 8, 7);
         }
 
         @Test
@@ -101,7 +101,7 @@ class CalculatorTest {
             Set<Integer> ensembleChiffres = Calculator.ensembleChiffres(entierNegatif);
 
             //THEN
-            assertEquals(1, ensembleChiffres.size());
+            assertThat(ensembleChiffres).containsExactlyInAnyOrder(1);
         }
         @Test
         void digitsSet_devrait_retourner_le_chiffre_0_d_un_entier_nul() {
@@ -112,6 +112,6 @@ class CalculatorTest {
             Set<Integer> ensembleChiffres = Calculator.ensembleChiffres(entierNul);
 
             //THEN
-            assertEquals(1, ensembleChiffres.size());
+            assertThat(ensembleChiffres).containsExactlyInAnyOrder(0);
         }
 }
